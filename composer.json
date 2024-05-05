@@ -17,19 +17,19 @@
 		"issues": "https://github.com/kdyby/events/issues"
 	},
 	"require": {
-		"php": "^7.4 | ^8.0",
-		"nette/di": "^3.0",
-		"nette/utils": "^3.0"
+		"php": "^8.1",
+		"nette/di": "^3.2",
+		"nette/utils": "^4.0"
 	},
 	"require-dev": {
-		"nette/application": "^3.0",
-		"nette/bootstrap": "^3.0",
-		"nette/caching": "^3.0",
-		"nette/security": "^3.0",
-		"nette/http": "^3.0",
-		"tracy/tracy": "^2.5",
+		"nette/application": "^3.2",
+		"nette/bootstrap": "^3.2",
+		"nette/caching": "^3.2",
+		"nette/security": "^3.2",
+		"nette/http": "^3.3",
+		"tracy/tracy": "^2.9",
 		"symfony/event-dispatcher": "^3.0 || ^4.0",
-		"nette/tester": "^2.4",
+		"nette/tester": "^2.5",
 		"phpstan/phpstan": "^0.12.88",
 		"jakub-onderka/php-parallel-lint": "^1.0"
 	},
