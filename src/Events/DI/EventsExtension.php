@@ -17,9 +17,9 @@ use Kdyby\Events\EventManager;
 use Kdyby\Events\LazyEventManager;
 use Kdyby\Events\Subscriber;
 use Kdyby\Events\SymfonyDispatcher;
-use Nette\Configurator;
+use Nette\Bootstrap\Configurator;
 use Nette\DI\Compiler;
-use Nette\DI\Config\Helpers;
+use Nette\Schema\Helpers;
 use Nette\DI\Container as DIContainer;
 use Nette\DI\ContainerBuilder as DIContainerBuilder;
 use Nette\DI\Definitions\AccessorDefinition;
@@ -31,8 +31,7 @@ use Nette\DI\Definitions\ServiceDefinition;
 use Nette\DI\Definitions\Statement;
 use Nette\DI\Helpers as DIHelpers;
 use Nette\PhpGenerator\ClassType as ClassTypeGenerator;
-use Nette\PhpGenerator\Helpers as GeneratorHelpers;
-use Nette\PhpGenerator\PhpLiteral;
+use Nette\PhpGenerator\Literal;
 use Nette\Utils\Validators;
 use ReflectionProperty;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
@@ -109,7 +108,7 @@ class EventsExtension extends \Nette\DI\CompilerExtension
 				$config['debugger'] = $config['debugger'] !== self::PANEL_COUNT_MODE;
 			}
 
-			$evm->addSetup('?::register(?, ?)->renderPanel = ?', [new PhpLiteral(Panel::class), '@self', '@container', $config['debugger']]);
+			$evm->addSetup('?::register(?, ?)->renderPanel = ?', [new Literal(Panel::class), '@self', '@container', $config['debugger']]);
 		}
 
 		if ($config['exceptionHandler'] !== NULL) {
@@ -410,7 +409,7 @@ class EventsExtension extends \Nette\DI\CompilerExtension
 			$def->addSetup('$' . $name, [
 				new Statement($this->prefix('@manager') . '::createEvent', [
 					[$class->getName(), $name],
-					new PhpLiteral('$service->' . $name),
+					new Literal('$service->' . $name),
 					NULL,
 					$dispatchAnnotation ?? $this->loadedConfig['globalDispatchFirst'],
 				]),
@@ -467,7 +466,7 @@ class EventsExtension extends \Nette\DI\CompilerExtension
 	}
 
 	/**
-	 * @param \Nette\Configurator $configurator
+	 * @param Configurator $configurator
 	 */
 	public static function register(Configurator $configurator)
 	{
